@@ -1,1 +1,23 @@
 X-Wing Miniatures game tournament organizer
+
+
+The plan is to have a program which we can use to run an X-Wing miniatures tournament using Swiss-style rounds as per FF tournament regulations.
+
+Steps of the program:
+
+1. Enter all participants. Something along the lines of 'enter participant or press enter if you're done'. Check if we have even or odd number, if odd, add a 'bye' participant. Write participants to a list (?)
+
+2. Ask how many rounds we'll play. -> 'rounds'
+
+3. Create random pairings. Possibly export pairings (with a name of 'first round'?
+
+4. Write in results - tournament points and MOV (margin of victory) - this second are for tie-breaking. Show results and ask for confirmation before continuing or allow organizer to enter results again.
+
+5. Sort the players according to results, create new pairings (this time first two, next two, etc). 
+
+Repeat steps 4 and 5 for number of rounds.
+
+Print out winner, number of points and MOV, also export to file.
+
+
+1. Each participant needs 3 fields: Name, Points, MOV.
