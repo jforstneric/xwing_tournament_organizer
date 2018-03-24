@@ -21,3 +21,12 @@ Print out winner, number of points and MOV, also export to file.
 
 
 1. Each participant needs 3 fields: Name, Points, MOV.
+
+MOV: 
+
+mov = p1 score - p2 score
+
+p1_mov = mov + 100
+p2_mov = 100 - mov
+
+IF P1_mov == 
