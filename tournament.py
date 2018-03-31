@@ -74,33 +74,40 @@ def manualMatching(sortedList):
 		
 def scoreMatches(sortedList):
 	for p in range(0,len(sortedList),2):
-		print('Enter ' + sortedList[p][0] + '\'s score in ship points (max. 100):')
-		playScore1 = int(input())
-		print('Enter ' + sortedList[p+1][0] + '\'s score in ship points (max. 100):')
-		playScore2 = int(input())
-		if playScore1 == playScore2:			#in case of tie
-			sortedList[p][1] = (sortedList[p][1] + 1)
-			sortedList[p][2] = (sortedList[p][2] + 100)
-			sortedList[p+1][1] = (sortedList[p+1][1] + 1)
-			sortedList[p+1][2] = (sortedList[p+1][2] + 100)
-		elif (1 <= abs(playScore1 - playScore2)) and (abs(playScore1 - playScore2) < 12):		#in case of modified win
-			if playScore1 > playScore2:
-				sortedList[p][1] = (sortedList[p][1] + 3)
-				sortedList[p][2] = (sortedList[p][2] + (100 + (playScore1 - playScore2)))
-				sortedList[p+1][2] = (sortedList[p+1][2] + (100 - (playScore1 - playScore2)))
-			else:
-				sortedList[p+1][1] = (sortedList[p+1][1] + 3)
-				sortedList[p+1][2] = (sortedList[p+1][2] + (100 + (playScore2 - playScore1)))
-				sortedList[p][2] = (sortedList[p][2] + (100 - (playScore2 - playScore1)))
-		else:			#normal win
-			if playScore1 > playScore2:
-				sortedList[p][1] = (sortedList[p][1] + 5)
-				sortedList[p][2] = (sortedList[p][2] + (100 + (playScore1 - playScore2)))
-				sortedList[p+1][2] = (sortedList[p+1][2] + (100 - (playScore1 - playScore2)))
-			else:
-				sortedList[p+1][1] = (sortedList[p+1][1] + 5)
-				sortedList[p+1][2] = (sortedList[p+1][2] + (100 + (playScore2 - playScore1)))
-				sortedList[p][2] = (sortedList[p][2] + (100 - (playScore2 - playScore1)))
+		if sortedList[p][0] == 'Bye':
+			sortedList[p+1][1] = (sortedList[p+1][1] + 5)
+			sortedList[p+1][2] = (sortedList[p+1][2] + 150)
+		elif sortedList[p+1][0] == 'Bye':
+			sortedList[p][1] = (sortedList[p][1] + 5)
+			sortedList[p][2] = (sortedList[p][2] + 150)
+		else:
+			print('Enter ' + sortedList[p][0] + '\'s score in ship points (max. 100):')
+			playScore1 = int(input())
+			print('Enter ' + sortedList[p+1][0] + '\'s score in ship points (max. 100):')
+			playScore2 = int(input())
+			if playScore1 == playScore2:			#in case of tie
+				sortedList[p][1] = (sortedList[p][1] + 1)
+				sortedList[p][2] = (sortedList[p][2] + 100)
+				sortedList[p+1][1] = (sortedList[p+1][1] + 1)
+				sortedList[p+1][2] = (sortedList[p+1][2] + 100)
+			elif (1 <= abs(playScore1 - playScore2)) and (abs(playScore1 - playScore2) < 12):		#in case of modified win
+				if playScore1 > playScore2:
+					sortedList[p][1] = (sortedList[p][1] + 3)
+					sortedList[p][2] = (sortedList[p][2] + (100 + (playScore1 - playScore2)))
+					sortedList[p+1][2] = (sortedList[p+1][2] + (100 - (playScore1 - playScore2)))
+				else:
+					sortedList[p+1][1] = (sortedList[p+1][1] + 3)
+					sortedList[p+1][2] = (sortedList[p+1][2] + (100 + (playScore2 - playScore1)))
+					sortedList[p][2] = (sortedList[p][2] + (100 - (playScore2 - playScore1)))
+			else:			#normal win
+				if playScore1 > playScore2:
+					sortedList[p][1] = (sortedList[p][1] + 5)
+					sortedList[p][2] = (sortedList[p][2] + (100 + (playScore1 - playScore2)))
+					sortedList[p+1][2] = (sortedList[p+1][2] + (100 - (playScore1 - playScore2)))
+				else:
+					sortedList[p+1][1] = (sortedList[p+1][1] + 5)
+					sortedList[p+1][2] = (sortedList[p+1][2] + (100 + (playScore2 - playScore1)))
+					sortedList[p][2] = (sortedList[p][2] + (100 - (playScore2 - playScore1)))
 	return(sortedList)
 	
 def printStandings(allParticipants):
