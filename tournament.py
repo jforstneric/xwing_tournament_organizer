@@ -23,9 +23,6 @@ def addParticipants():
 				allParticipants.append(['Bye',0,0])
 			break
 		allParticipants.append([participant,0,0])
-		# ~ print('Our participants are:')
-		# ~ for p in allParticipants:
-			# ~ print(str(p[0]))
 		participantNumber += 1
 	return(allParticipants)		#a list with participant's names
 	
@@ -41,6 +38,22 @@ def printMatches(sortedList):
 		return(newSort)
 	else:
 		return(sortedList)
+	
+def exportMatches(currentRound, sortedList):
+	tournament = open('tournament_export.txt', 'a')
+	tournament.write('The matches in round ' + str(currentRound) + ':\n')
+	for p in range(0,len(sortedList),2):
+		tournament.write(sortedList[p][0] + ' plays ' + sortedList[p+1][0] + '\n')
+	tournament.write('\n')
+	tournament.close()
+		
+def exportStandings(currentStandings):
+	tournament = open('tournament_export.txt', 'a')
+	tournament.write('The current standings are:\n')
+	for p in currentStandings:
+		tournament.write(p[0] + ' with ' + str(p[1]) + ' points and a MOV of ' + str(p[2]) + '\n')
+	tournament.write('\n')
+	tournament.close()
 	
 def otherSorting(sortedList):
 	sortedList = sorted(sortedList, key=itemgetter(1,2), reverse=True)		#double sort with itemgetter - first by sortedList[1] then by sortedList[2]
@@ -104,8 +117,10 @@ if __name__ == '__main__':
 	#this is looped for the number of rounds:
 	for r in range(playRounds):
 		allParticipants = printMatches(allParticipants)
+		exportMatches(r, allParticipants)
 		postScoring = scoreMatches(allParticipants)
 		allParticipants = otherSorting(postScoring)
+		exportStandings(allParticipants)
 		print()
 		print('The current standings are:')
 		printStandings(allParticipants)
